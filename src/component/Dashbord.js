@@ -7,14 +7,14 @@ import SideBar from "./SideBar";
 import AddNewPosts from "./dashbord/AddNewPosts";
 import LogInPage from "./dashbord/LogInPage";
 const Dashbord = () => {
-  const Logout = () => {
-    window.localStorage.setItem("token", "");
-    window.location.reload();
-  };
+  // const Logout = () => {
+  //   window.localStorage.setItem("token", "");
+  //   window.location.reload();
+  // };
   return (
     <>
       <div className="row">
-        <NavLink to="/LogInPage" btn onClick={Logout}>
+        <NavLink to="/LogInPage" className="btn btn-danger">
           Login
         </NavLink>
 
@@ -22,7 +22,7 @@ const Dashbord = () => {
           <SideBar />
         </div>
 
-        <div className="col-10">
+        <div className="col-10 mt-4">
           {" "}
           <div className="">
             <Routes>

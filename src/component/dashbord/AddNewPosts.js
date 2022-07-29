@@ -5,27 +5,47 @@ import axios from "axios";
 
 const AddNewPosts = () => {
   const [data, setData] = useState({
-    imageUrl: "",
-    category: "",
-    title: "",
-    mainBody: "",
+    B: "",
+    status: "",
+    salary: "",
+    //  image: "",
   });
-  const notify = () => toast("Wow so easy!");
+
   const handelChange = (e) => {
-    // e.preventDefault();
     setData({ ...data, [e.target.name]: e.target.value });
-    // console.log(...data);
   };
 
-  // const handleClick = (e) => {
-  //   e.preventDefault();
-  //   handelonSubmit();
+  // let base64code = "";
+  // const onChange = (e) => {
+  //   const files = e.target.files;
+  //   const file = files[0];
+  //   getBase64(file);
   // };
+
+  // const onLoad = (fileString) => {
+  //   console.log(fileString);
+  //   this.base64code = fileString;
+  // };
+
+  // const getBase64 = (file) => {
+  //   let reader = new FileReader();
+  //   reader.readAsDataURL(file);
+  //   reader.onload = () => {
+  //     onLoad(reader.result);
+  //   };
+  // };
+
   const handelonSubmit = async (e) => {
+    let goData = {
+      B: data.name,
+      C: data.status,
+      D: data.salary,
+    };
+    console.log(data);
     e.preventDefault();
     const response = await axios.post(
-      "http://localhost:4000/admin/addPosts",
-      data,
+      "http://localhost:4000/googleSheet/addData",
+      goData,
       {
         headers: {
           "Content-Type": "application/json",
@@ -34,10 +54,10 @@ const AddNewPosts = () => {
     );
 
     setData({
-      imageUrl: "",
-      category: "",
-      title: "",
-      mainBody: "",
+      name: "",
+      status: "",
+      salary: "",
+      //  image: "",
     });
   };
   //  console.log(data);
@@ -47,26 +67,34 @@ const AddNewPosts = () => {
         <div class="form-row row">
           <div class="col-6 mx-5">
             <div class="form-group  mt-2">
-              <label for="inputEmail4">Category</label>
+              <label for="inputEmail4">Name</label>
 
               <input
                 type="text"
                 class="form-control"
-                name="category"
-                placeholder="category"
+                name="name"
                 onChange={handelChange}
-                value={data.category}
+                value={data.name}
               />
             </div>
             <div class="form-group mt-2">
-              <label for="inputPassword4">Title</label>
+              <label for="inputPassword4">Status</label>
               <input
                 type="text"
                 class="form-control"
-                placeholder="Title"
-                name="title"
+                name="status"
                 onChange={handelChange}
-                value={data.title}
+                value={data.status}
+              />
+            </div>
+            <div class="form-group mt-2">
+              <label>Salary</label>
+              <input
+                type="text"
+                class="form-control"
+                name="salary"
+                onChange={handelChange}
+                value={data.salary}
               />
             </div>
           </div>
@@ -75,13 +103,13 @@ const AddNewPosts = () => {
               <input
                 class="btn btn-outline-success mt-3 mx-4"
                 type="file"
-                onChange={""}
+                //value={data.salary}
+                //onChange={onChange}
               />
-              <button class="btn btn-outline-danger mt-3">Upload!</button>
             </div>
           </div>
         </div>
-        <div class="form-group mt-2">
+        {/* <div class="form-group mt-2">
           <label for="inputAddress">Main Body</label>
           <textarea
             type="text"
@@ -91,7 +119,7 @@ const AddNewPosts = () => {
             onChange={handelChange}
             value={data.mainBody}
           />
-        </div>
+        </div> */}
         <button
           type="submit"
           onClick={handelonSubmit}
@@ -99,10 +127,6 @@ const AddNewPosts = () => {
         >
           Submit
         </button>
-        <div>
-          <button onClick={notify}>Notify!</button>
-          <ToastContainer />
-        </div>
       </form>
     </div>
   );

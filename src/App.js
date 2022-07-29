@@ -1,21 +1,20 @@
 import Dashbord from "./component/Dashbord";
 import NavBar from "./component/NavBar";
-import "./App.css"
+import "./App.css";
 import LogInPage from "./component/dashbord/LogInPage";
 
 function App() {
-  const token = window.localStorage.getItem("token");
+  //const token = window.localStorage.getItem("token");
   return (
     <>
-      {!token ? (
+      {/* {!token ? (
         <LogInPage />
-      ) : (
-        <div className="">
-      
-          <NavBar />
-          <Dashbord />
-        </div>
-      )}
+      ) : ( */}
+      <div className="">
+        <NavBar />
+        <Dashbord />
+      </div>
+      {/* )} */}
     </>
   );
 }
